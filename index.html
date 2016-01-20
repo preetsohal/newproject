@@ -1,14 +1,38 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-  <title>Picture Fun!</title>
-    <h1> Click The Pic</h1>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="chart.js"></script>
+    
+
   </head>
- <body>
+  <body>
+    <h1>Click The Pic</h1>
+    <p> Please click on any picture and see what happens! </p>
 
-      <img id src="C:\Users\gpreet\Desktop\project\bag.jpg"><Bag>
-      <img id src="C:\Users\gpreet\Desktop\project\banana.jpg"><Banana>
-      <img id src="C:\Users\gpreet\Desktop\project\wine-glass.jpg"><WineGlass>
-   <img id src="clickme" oneclick ="changeimage();</img>
+  <section>
+    <article class="imagesContainer">
+      <container>
+        <img src="" id="first" class="pictures">
+      </container>
+    </article>
 
-  </html>
+    <article class="imagesContainer">
+      <container>
+        <img src="" id="second" class="pictures">
+      </container>
+    </article>
+
+    <article class="imagesContainer">
+      <container>
+        <img src="" id="third" class="pictures">
+      </container>
+    </article>
+  </section>
+
+  <canvas id="images" width="400" height="400"></canvas>
+    <script src="app.js"></script>
+  </body>
+</html>

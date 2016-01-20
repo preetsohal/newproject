@@ -6,10 +6,20 @@ h1 {
   background-color: lightgreen;
 
 }
-.container {
+.imagesContainer {
+    display: inline-block;
     text-align: center;
     justify-content: space-between;
     padding-right: 10px;
     padding-left: 10px;
     background-color: lightblue;
+}
+p{
+  display: inline-block;
+  text-align: center;
+  padding-left: 20px;
+  background-color: lightyellow;
+  font-size: 30px;
+  font-family: cursive;
+  font-style: italic;
 }
