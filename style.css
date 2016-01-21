@@ -2,13 +2,14 @@ h1 {
   text-align: center;
   font-family: serif;
   font-size: 40px;
+  color: red;
   border-radius: 5px;
   background-color: lightgreen;
 
 }
 .imagesContainer {
-    display: inline-block;
-    text-align: center;
+    flex: auto;
+    display:inline-flex;
     justify-content: space-between;
     padding-right: 10px;
     padding-left: 10px;
