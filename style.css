@@ -2,14 +2,25 @@ h1 {
   text-align: center;
   font-family: serif;
   font-size: 40px;
+  color: red;
   border-radius: 5px;
   background-color: lightgreen;
 
 }
-.container {
-    text-align: center;
+.imagesContainer {
+    flex: auto;
+    display:inline-flex;
     justify-content: space-between;
     padding-right: 10px;
     padding-left: 10px;
     background-color: lightblue;
+}
+p{
+  display: inline-block;
+  text-align: center;
+  padding-left: 20px;
+  background-color: lightyellow;
+  font-size: 30px;
+  font-family: cursive;
+  font-style: italic;
 }
