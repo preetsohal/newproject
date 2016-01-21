@@ -2,6 +2,23 @@ var imagesArray = [];
   var totalClicks = 0;
   var buttonId = document.getElementById("button");
 
+  var clearLS = document.getElementById('clearLSButton');
+  clearLS.addEventListener('click', clearLSHandler);
+
+  function clearLSHandler (event) {
+    console.log('I just cleared the local storage');
+    localStorage.clear();
+  }
+
+  var chartData = localStorage.getItem('chartPersists');
+
+  if (chartData) {
+    data = JSON.parse(chartData)
+  } else {
+    localStorage.setItem('chartPersists', JSON.stringify('data'));
+  }
+
+
 function Images(name, fileLoc) {
    this.name = name;
    this.fileLoc = fileLoc;
@@ -124,6 +141,7 @@ var allVotes = [];
      for (i = 0; i < 14; i ++) {
        data.labels[i] =imagesArray[i].name;
        data.datasets[0].data[i]=imagesArray[i].counter;
+       localStorage.setItem('chartPersists', JSON.stringify(data));
      }
      var myBarChart = new Chart(ctx).Bar(data);
  }
