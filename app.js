@@ -2,6 +2,9 @@ var imagesArray = [];
   var totalClicks = 0;
   var buttonId = document.getElementById("button");
 
+
+
+
 function Images(name, fileLoc) {
    this.name = name;
    this.fileLoc = fileLoc;
@@ -12,6 +15,8 @@ function Images(name, fileLoc) {
   function randomNumber(){
   return Math.floor((Math.random() * imagesArray.length));
 }
+
+
 
 var bag = new Images('bag','project/bag.jpg');
 var banana = new Images('banana','project/banana.jpg');
@@ -28,6 +33,17 @@ var usb = new Images('usb','project/usb.jpg');
 var water_can = new Images('water-can','project/water-can.jpg');
 var wine_glass = new Images('wine-glass','project/wine-glass.jpg');
 
+function getJSON () {
+var newChartData = JSON.parse(localStorage.getItem('chartPersists'));
+if (newChartData) {
+  imagesArray = newChartData;
+  console.log('json parsed');
+} else {
+  localStorage.setItem('chartPersists', JSON.stringify(imagesArray));
+};
+}
+getJSON();
+
 var ctx = document.getElementById("myChart").getContext("2d");
 var data = {
     labels: ["bag", "banana", "boots", "chair", "cthulhu", "dragon", "pen","scissors","shark","sweep","unicorn","usb","water_can","wine_glass"],
@@ -40,10 +56,12 @@ var data = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [65, 59, 80, 81, 56, 55, 40]
+            data: [0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         }
       ]
 };
+
+
 
 
  var img1 = document.getElementById('first');
@@ -82,6 +100,7 @@ buttonId.addEventListener("click", buttonClick);
 function handleClickOnFirst() {
   imagesArray[rand1].counter += 1;
   totalClicks += 1;
+  localStorage.setItem('chartPersists', JSON.stringify(imagesArray));
   console.log(imagesArray[rand1].counter);
   console.log(imagesArray[rand1].name);
   console.log (totalClicks);
@@ -95,6 +114,7 @@ function handleClickOnFirst() {
 function handleClickOnSecond() {
   imagesArray[rand2].counter += 1;
   totalClicks += 1;
+  localStorage.setItem('chartPersists', JSON.stringify(imagesArray));
   console.log(imagesArray[rand2].counter);
   console.log(imagesArray[rand2].name);
   console.log (totalClicks);
@@ -107,6 +127,7 @@ function handleClickOnSecond() {
 function handleClickOnThird() {
   imagesArray[rand3].counter += 1;
   totalClicks += 1;
+  localStorage.setItem('chartPersists', JSON.stringify(imagesArray));
   console.log(imagesArray[rand3].counter);
   console.log(imagesArray[rand3].name);
   console.log (totalClicks);
@@ -116,17 +137,43 @@ function handleClickOnThird() {
   random();
 }
 
+// function pushLocalStorage () {
+// localStorage.setItem('chartPersists', JSON.stringify(imagesArray));
+// }
+// pushLocalStorage ();
+
 var allVotes = [];
  // function makeVoteArray() {
-   function buttonClick(){
+   function buttonClick(event){
    console.log("testing result button");
+
    var i;
-     for (i = 0; i < 14; i ++) {
-       data.labels[i] =imagesArray[i].name;
-       data.datasets[0].data[i]=imagesArray[i].counter;
-     }
-     var myBarChart = new Chart(ctx).Bar(data);
- }
+
+
+   for (i = 0; i < 14; i++) {
+     data.labels[i] = imagesArray[i].name;
+     data.datasets[0].data[i] += imagesArray[i].counter;
+   }
+
+  //    localStorage.setItem('chartPersists', JSON.stringify(data));
+  //    if (myBarChart) {
+  //    myBarChart.destroy();
+  //  }
+  //    }
+  var myBarChart = new Chart(ctx).Bar(data);
+     myBarChart.update();
+ // }
+
+
  function showResult(){
 
  }
+
+var clearLS = document.getElementById('clearLSButton');
+clearLS.addEventListener('click', clearLSHandler);
+
+ function clearLSHandler (event) {
+   console.log('I just cleared the local storage');
+   localStorage.clear();
+ }
+}
